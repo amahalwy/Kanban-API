@@ -81,7 +81,7 @@ app.use(errorHandler);
 
 // Handle unhandled promise rejections
 process.on("unhandledRejection", (err, promise) => {
-  console.log(`Error: ${err.message}`.red);
+  console.log(`Error: ${err}`);
   // Close server & exit process
   server.close(() => process.exit(1));
 });
