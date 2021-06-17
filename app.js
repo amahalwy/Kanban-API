@@ -65,6 +65,8 @@ app.use("/dashboard/boards/", columnsRouter);
 app.use("/dashboard/boards/", cardsRouter);
 app.use("/newboard", newBoardRouter);
 
+// All routes will need to change to accomodate production use
+// Changes need to occur in client side repo
 if (process.env.NODE_ENV === "production") {
   // app.use(express.static(path.join(__dirname, "/client/build")));
   // res.sendFile(path.resolve(__dirname), "client", "build", "index.html")
