@@ -45,7 +45,7 @@ app.use(
   cors({
     origin:
       process.env.NODE_ENV === "production"
-        ? "https://hatchways-kanban-api.herokuapp.com/"
+        ? "https://kanban-rambo.vercel.app/"
         : "http://localhost:3000",
     credentials: true,
   })
