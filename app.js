@@ -43,10 +43,10 @@ app.use(cookieParser());
 app.use(express.static(join(__dirname, "public")));
 app.use(
   cors({
-    origin:
-      process.env.NODE_ENV === "production"
-        ? "https://kanban-rambo.vercel.app"
-        : "http://localhost:3000",
+    // origin:
+    //   process.env.NODE_ENV === "production"
+    //     ? "https://kanban-rambo.vercel.app"
+    //     : "http://localhost:3000",
     credentials: true,
   })
 );
