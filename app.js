@@ -38,17 +38,19 @@ if (process.env.NODE_ENV === "development") {
   app.use(logger("dev"));
 }
 app.use(json());
-app.use(cors());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(join(__dirname, "public")));
-// cors({
-//   // origin:
-//   //   process.env.NODE_ENV === "production"
-//   //     ? "https://kanban-rambo.vercel.app"
-//   //     : "http://localhost:3000",
-//   // credentials: true,
-// })
+app.use(
+  cors({
+    credentials: true,
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:5000",
+      "https://kanban-rambo.vercel.app",
+    ],
+  })
+);
 
 app.use((req, res, next) => {
   req.io = io;
