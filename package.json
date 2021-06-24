@@ -7,10 +7,14 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./bin/www"
+    "dev": "nodemon ./bin/www",
+    "start": "node ./bin/www"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.4.4",
     "bcryptjs": "^2.4.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "cloudinary": "^1.25.1",
     "colors": "^1.4.0",
     "cookie-parser": "^1.4.5",
@@ -20,6 +24,7 @@
     "express-validator": "^6.11.1",
     "http-errors": "~1.8.0",
     "jsonwebtoken": "^8.5.1",
+    "mocha": "^8.2.1",
     "mongoose": "^5.12.8",
     "mongoose-hidden": "^1.9.1",
     "morgan": "^1.10.0",
@@ -28,12 +33,6 @@
     "socket.io": "^4.1.0",
     "streamifier": "^0.1.1",
     "uuid": "^8.3.2"
-  },
-  "devDependencies": {
-    "@sendgrid/mail": "^7.4.4",
-    "chai": "^4.2.0",
-    "chai-http": "^4.3.0",
-    "mocha": "^8.2.1"
   },
   "author": "",
   "license": "ISC"

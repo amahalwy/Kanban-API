@@ -1,4 +1,3 @@
-const colors = require("colors");
 const path = require("path");
 const http = require("http");
 const express = require("express");
@@ -42,7 +41,15 @@ app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(join(__dirname, "public")));
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(
+  cors({
+    origin:
+      process.env.NODE_ENV === "production"
+        ? "https://hatchways-kanban-api.herokuapp.com/"
+        : "http://localhost:3000",
+    credentials: true,
+  })
+);
 
 app.use((req, res, next) => {
   req.io = io;
@@ -58,12 +65,13 @@ app.use("/dashboard/boards/", columnsRouter);
 app.use("/dashboard/boards/", cardsRouter);
 app.use("/newboard", newBoardRouter);
 
+// All routes will need to change to accomodate production use
+// Changes need to occur in client side repo
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "/client/build")));
+  // app.use(express.static(path.join(__dirname, "/client/build")));
+  // res.sendFile(path.resolve(__dirname), "client", "build", "index.html")
 
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname), "client", "build", "index.html")
-  );
+  app.get("*", (req, res) => res.send("API is running in production"));
 } else {
   app.get("/", (req, res) => {
     res.send("API is running");
@@ -75,7 +83,7 @@ app.use(errorHandler);
 
 // Handle unhandled promise rejections
 process.on("unhandledRejection", (err, promise) => {
-  console.log(`Error: ${err.message}`.red);
+  console.log(`Error: ${err}`);
   // Close server & exit process
   server.close(() => process.exit(1));
 });
