@@ -41,7 +41,7 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: secondsInWeek * 1000,
-      domain: "https://hatchways-kanban-api.herokuapp.com/",
+      domain: "https://kanban-rambo.vercel.app/",
       secure: true,
       sameSite: "none",
     });
@@ -77,7 +77,7 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: secondsInWeek * 1000,
-      domain: "https://hatchways-kanban-api.herokuapp.com/",
+      domain: "https://kanban-rambo.vercel.app/",
       secure: true,
       sameSite: "none",
     });
