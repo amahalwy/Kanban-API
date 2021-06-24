@@ -37,9 +37,13 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
       user: user._id,
     });
     await board.createTemplateBoard();
+
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: secondsInWeek * 1000,
+      domain: "https://hatchways-kanban-api.herokuapp.com/",
+      secure: true,
+      sameSite: "none",
     });
 
     res.status(201).json({
@@ -73,6 +77,9 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: secondsInWeek * 1000,
+      domain: "https://hatchways-kanban-api.herokuapp.com/",
+      secure: true,
+      sameSite: "none",
     });
 
     res.status(200).json({
