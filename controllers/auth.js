@@ -41,7 +41,10 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: secondsInWeek * 1000,
-      domain: "https://kanban-rambo.vercel.app/",
+      domain:
+        process.env.NODE_ENV === "production"
+          ? "https://kanban-rambo.vercel.app"
+          : "http://localhost:3000",
       secure: true,
       sameSite: "none",
     });
@@ -77,7 +80,10 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: secondsInWeek * 1000,
-      domain: "https://kanban-rambo.vercel.app/",
+      domain:
+        process.env.NODE_ENV === "production"
+          ? "https://kanban-rambo.vercel.app"
+          : "http://localhost:3000",
       secure: true,
       sameSite: "none",
     });
